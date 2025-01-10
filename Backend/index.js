@@ -3,6 +3,13 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const Patient = require('./Patient')
 const multer = require('multer')
+const jwt = require('jsonwebtoken')
+// const Keychain = require('react-native-keychain')
+
+//Function for storing JWT token
+// async function storeToken(token){
+//     await Keychain.setGenericPassword('JWT', token);
+// }
 
 const connectDB = async () => {
     try{
@@ -59,7 +66,22 @@ app.post('/api/login', async (req, res) => {
         if(!newPatient){
             res.status(201).send({message: 'Invalid email'})
         } else if(newPatient.password === password){
-            res.status(200).send({message: 'User Logged in Successfully'})
+            
+            //Creating session
+            // const payload = {
+            //     userId: newPatient.id,
+            //     name: newPatient.name
+            // }
+
+            // const secretKey = process.env.AXIOS_BACKEND_URL
+
+            // const token = jwt.sign(payload, secretKey, { expiresIn: "1h" })
+
+            // storeToken(token)
+
+            const id = newPatient.id
+
+            res.status(200).send({message: 'User Logged in Successfully', id: id})
         } else {
             res.status(202).send({message: 'Invalid password'})
             return;
