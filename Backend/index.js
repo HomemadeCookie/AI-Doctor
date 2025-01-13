@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const Patient = require('./Patient')
 const multer = require('multer')
-const jwt = require('jsonwebtoken')
+// const jwt = require('jsonwebtoken')
 // const Keychain = require('react-native-keychain')
 
 //Function for storing JWT token
